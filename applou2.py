@@ -3,6 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 
+#clave
+clave = st.text_input("Ingresa  clave de acceso:", type="password")
+if clave != "lourdeswalls":
+    st.warning("Clave incorrecta.")
+    st.stop()
+
 # original
 
 def lms_parameters(sexo: str, medida: str, edad: float):
