@@ -48,7 +48,7 @@ def calculate_percentile_valor(L, M, S, z):
     return M * (1 + L * S * z) ** (1 / L)
 
 def plot_percentile_curve(sexo, medida, edad_obs, valor_obs):
-    edades = np.linspace(2, 14, 100)
+    edades = np.linspace(0, 14, 100)
     percentiles = [3, 10, 25, 50, 75, 90, 97]
     z_scores = [stats.norm.ppf(p / 100) for p in percentiles]
     curves = {p: [] for p in percentiles}
@@ -68,6 +68,7 @@ def plot_percentile_curve(sexo, medida, edad_obs, valor_obs):
     ax.set_xlabel("Edad (años)")
     ax.set_ylabel(f"{medida.upper()} valor")
     ax.legend()
+    ax.set_xticks(np.arange(0, 15, 1))
     ax.grid(True)
     return fig
 
@@ -79,7 +80,16 @@ st.markdown("Selecciona los valores para calcular el percentil y visualizar la c
 
 sexo = st.selectbox("Sexo", ["femenino", "masculino"])
 medida = st.selectbox("Medida", ["AI", "ADR"])
-edad = st.slider("Edad (años)", 2.0, 14.0, 10.0, step=0.1)
+
+
+col1, col2 = st.columns(2)
+with col1:
+    años = st.number_input("Edad (años)", min_value=0, max_value=14, step=1, value=0)
+with col2:
+    meses = st.number_input("Edad (meses)", min_value=0, max_value=11, step=1, value=0)
+
+edad = años + (meses / 12)  
+
 valor = st.number_input("Valor observado", min_value=0.0, format="%.2f", value=20.0)
 
 if st.button("Calcular"):
@@ -88,6 +98,7 @@ if st.button("Calcular"):
         z = calculate_z_score(valor, L, M, S)
         percentile = z_to_percentile(z)
 
+        st.success(f"Edad: {edad:.2f} años")
         st.success(f"Z-score: {z:.2f}")
         st.success(f"Percentil estimado: {percentile:.2f}")
 
