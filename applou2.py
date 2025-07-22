@@ -110,7 +110,7 @@ if st.button("Calcular"):
         st.success(f"Z-score: {z:.2f}")
         st.success(f"Percentil estimado: {percentile:.2f}")
 
-        fig = plot_percentile_curve(sexo, medida, edad, valor)
+        fig = plot_percentile_curve(sexo, medida, edad, valor, nombre)
         st.pyplot(fig)
     except Exception as e:
         st.error(f"Ocurrió un error: {e}")
