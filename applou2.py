@@ -47,7 +47,7 @@ def calculate_percentile_valor(L, M, S, z):
         return M * np.exp(S * z)
     return M * (1 + L * S * z) ** (1 / L)
 
-def plot_percentile_curve(sexo, medida, edad_obs, valor_obs):
+def plot_percentile_curve(sexo, medida, edad_obs, valor_obs, nombre=""):
     edades = np.linspace(0, 14, 100)
     percentiles = [3, 10, 25, 50, 75, 90, 97]
     z_scores = [stats.norm.ppf(p / 100) for p in percentiles]
@@ -62,8 +62,16 @@ def plot_percentile_curve(sexo, medida, edad_obs, valor_obs):
     fig, ax = plt.subplots(figsize=(10, 6))
     for p in percentiles:
         ax.plot(edades, curves[p], label=f'P{p}')
-    
-    ax.scatter(edad_obs, valor_obs, color='red', label='Valor observado', zorder=5)
+        ax.scatter(edad_obs, valor_obs, color='red', zorder=5)
+        if nombre:
+            ax.annotate(nombre, (edad_obs, valor_obs),
+                textcoords="offset points", xytext=(0,10),
+                ha='center', fontsize=10, color='red',
+                fontweight='bold')
+        else:
+            ax.annotate("Valor observado", (edad_obs, valor_obs),
+                textcoords="offset points", xytext=(0,10),
+                ha='center', fontsize=10, color='red')
     ax.set_title(f'{medida.upper()} - Curvas percentiles ({sexo.capitalize()})')
     ax.set_xlabel("Edad (años)")
     ax.set_ylabel(f"{medida.upper()} valor")
@@ -89,7 +97,7 @@ with col2:
     meses = st.number_input("Edad (meses)", min_value=0, max_value=11, step=1, value=0)
 
 edad = años + (meses / 12)  
-
+nombre = st.text_input("Nombre", "")
 valor = st.number_input("Valor observado", min_value=0.0, format="%.2f", value=20.0)
 
 if st.button("Calcular"):
