@@ -12,8 +12,15 @@ if clave != "lourdeswalls":
     st.warning("Clave incorrecta.")
     st.stop()
 
-logo = Image.open("logobueno.jpg")
-st.image(logo, use_column_width=True)
+st.markdown(
+    """
+    <div style='text-align: center;'>
+        <img src='https://raw.githubusercontent.com/lorepaty1313/percentilesAI-ADR/main/logobueno.jpg' width='300'>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 
 # original
 
