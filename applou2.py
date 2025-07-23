@@ -151,6 +151,22 @@ if st.button("Calcular"):
         fig = plot_percentile_curve(sexo, medida, edad, valor, nombre)
         st.pyplot(fig)
 
+    except Exception as e:
+        st.error(f"Ocurrió un error: {e}")
+
+if st.button("Calcular"):
+    try:
+        L, M, S = lms_parameters(sexo, medida, edad)
+        z = calculate_z_score(valor, L, M, S)
+        percentile = z_to_percentile(z)
+
+        st.success(f"Edad: {edad:.2f} años")
+        st.success(f"Z-score: {z:.2f}")
+        st.success(f"Percentil estimado: {percentile:.2f}")
+
+        fig = plot_percentile_curve(sexo, medida, edad, valor, nombre)
+        st.pyplot(fig)
+
     st.markdown("---")  
 
 st.markdown(
