@@ -167,20 +167,19 @@ if st.button("Calcular"):
         fig = plot_percentile_curve(sexo, medida, edad, valor, nombre)
         st.pyplot(fig)
 
-except Exception as e:
+        st.markdown("---")
+        st.markdown(
+            """
+            **Referencia científica:**
+
+            Novais EN, Pan Z, Autruong PT, Meyers ML, Chang FM.  
+            *Normal Percentile Reference Curves and Correlation of Acetabular Index and Acetabular Depth Ratio in Children.*  
+            J Pediatr Orthop. 2018 Mar;38(3):163–169.  
+            doi: [10.1097/BPO.0000000000000791](https://doi.org/10.1097/BPO.0000000000000791)  
+            PMID: [27261963](https://pubmed.ncbi.nlm.nih.gov/27261963/)
+            """,
+            unsafe_allow_html=True
+        )
+
+    except Exception as e:
         st.error(f"Ocurrió un error: {e}")
-
- 
-st.markdown("---")
-st.markdown(
-        """
-         **Referencia:**
-
-        Novais EN, Pan Z, Autruong PT, Meyers ML, Chang FM.  
-        *Normal Percentile Reference Curves and Correlation of Acetabular Index and Acetabular Depth Ratio in Children.*  
-        J Pediatr Orthop. 2018 Mar;38(3):163–169.  
-        doi: [10.1097/BPO.0000000000000791](https://doi.org/10.1097/BPO.0000000000000791)  
-        PMID: [27261963](https://pubmed.ncbi.nlm.nih.gov/27261963/)
-        """,
-        unsafe_allow_html=True
-    )
