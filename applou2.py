@@ -12,7 +12,7 @@ if clave != "lourdeswalls":
     st.warning("Clave incorrecta.")
     st.stop()
 
-t.markdown(
+st.markdown(
     """
     <div style='text-align: right;'>
         <img src='https://raw.githubusercontent.com/lorepaty1313/percentilesAI-ADR/main/logobueno.jpg' width='200'>
