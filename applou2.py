@@ -169,7 +169,7 @@ if st.button("Calcular"):
 
     st.markdown("---")  
 
-st.markdown(
+    st.markdown(
     """
     **Referencia:**
 
@@ -180,6 +180,6 @@ st.markdown(
     PMID: [27261963](https://pubmed.ncbi.nlm.nih.gov/27261963/)
     """,
     unsafe_allow_html=True
-)
-    except Exception as e:
+    )
+except Exception as e:
         st.error(f"Ocurrió un error: {e}")
