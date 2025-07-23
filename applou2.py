@@ -2,6 +2,25 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
+from PIL import Image
+import base64
+
+def get_base64_image(path):
+    with open(path, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+img_base64 = get_base64_image("Logo.png")
+
+
+st.markdown(
+    f"""
+    <div style="position: absolute; top: 10px; right: 10px;">
+        <img src="data:image/png;base64,{img_base64}" width="100">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 #clave
 clave = st.text_input("Ingresa  clave de acceso:", type="password")
