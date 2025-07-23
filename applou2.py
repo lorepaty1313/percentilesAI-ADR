@@ -171,10 +171,10 @@ except Exception as e:
         st.error(f"Ocurrió un error: {e}")
 
  
-    st.markdown("---")
-    st.markdown(
+st.markdown("---")
+st.markdown(
         """
-        📚 **Referencia científica:**
+         **Referencia:**
 
         Novais EN, Pan Z, Autruong PT, Meyers ML, Chang FM.  
         *Normal Percentile Reference Curves and Correlation of Acetabular Index and Acetabular Depth Ratio in Children.*  
