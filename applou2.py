@@ -48,8 +48,8 @@ def calculate_percentile_valor(L, M, S, z):
     return M * (1 + L * S * z) ** (1 / L)
 
 def plot_percentile_curve(sexo, medida, edad_obs, valor_obs, nombre=""):
-    edades = np.linspace(0, 14, 100)
-    percentiles = [3, 10, 25, 50, 75, 90, 97]
+    edades = np.linspace(0, 14, 120)
+    percentiles = [1, 3, 10, 25, 50, 75, 90, 97, 99]
     z_scores = [stats.norm.ppf(p / 100) for p in percentiles]
     curves = {p: [] for p in percentiles}
 
@@ -59,26 +59,51 @@ def plot_percentile_curve(sexo, medida, edad_obs, valor_obs, nombre=""):
             valor = calculate_percentile_valor(L, M, S, z)
             curves[p].append(valor)
 
+    # Colores según sexo
+    if sexo.lower() == "femenino":
+        color_normal = "#f8bbd0"      # rosa claro
+        color_vigilancia = "#f48fb1"  # rosa medio
+        color_critico = "#c2185b"     # rosa fuerte
+        line_color = "#880e4f"
+    else:
+        color_normal = "#bbdefb"      # azul claro
+        color_vigilancia = "#90caf9"  # azul medio
+        color_critico = "#1976d2"     # azul fuerte
+        line_color = "#0d47a1"
+
     fig, ax = plt.subplots(figsize=(10, 6))
+
+    # Sombrear zonas por riesgo
+    ax.fill_between(edades, curves[1], curves[50], color=color_normal, alpha=0.4, label="0–50: Normal")
+    ax.fill_between(edades, curves[50], curves[90], color=color_vigilancia, alpha=0.4, label="50–90: Vigilancia")
+    ax.fill_between(edades, curves[90], curves[99], color=color_critico, alpha=0.4, label="90–99: Crítico")
+
+    # Dibujar curvas
     for p in percentiles:
-        ax.plot(edades, curves[p], label=f'P{p}')
-        ax.scatter(edad_obs, valor_obs, color='red', zorder=5)
-        if nombre:
-            ax.annotate(nombre, (edad_obs, valor_obs),
-                textcoords="offset points", xytext=(0,10),
-                ha='center', fontsize=10, color='red',
-                fontweight='bold')
-        else:
-            ax.annotate("Valor observado", (edad_obs, valor_obs),
-                textcoords="offset points", xytext=(0,10),
-                ha='center', fontsize=10, color='red')
+        ax.plot(edades, curves[p], color=line_color, alpha=0.6, linewidth=1)
+
+    # Punto observado
+    ax.scatter(edad_obs, valor_obs, color='red', zorder=5)
+
+    # Etiqueta con nombre
+    if nombre:
+        ax.annotate(nombre, (edad_obs, valor_obs),
+                    textcoords="offset points", xytext=(0,10),
+                    ha='center', fontsize=10, color='black', fontweight='bold')
+    else:
+        ax.annotate("Valor observado", (edad_obs, valor_obs),
+                    textcoords="offset points", xytext=(0,10),
+                    ha='center', fontsize=10, color='black')
+
     ax.set_title(f'{medida.upper()} - Curvas percentiles ({sexo.capitalize()})')
     ax.set_xlabel("Edad (años)")
     ax.set_ylabel(f"{medida.upper()} valor")
-    ax.legend()
     ax.set_xticks(np.arange(0, 15, 1))
+    ax.legend()
     ax.grid(True)
+
     return fig
+
 
 # Pa streamline
 
