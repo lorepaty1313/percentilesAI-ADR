@@ -12,10 +12,10 @@ if clave != "lourdeswalls":
     st.warning("Clave incorrecta.")
     st.stop()
 
-st.markdown(
+t.markdown(
     """
-    <div style='text-align: center;'>
-        <img src='https://raw.githubusercontent.com/lorepaty1313/percentilesAI-ADR/main/logobueno.jpg' width='300'>
+    <div style='text-align: right;'>
+        <img src='https://raw.githubusercontent.com/lorepaty1313/percentilesAI-ADR/main/logobueno.jpg' width='200'>
     </div>
     """,
     unsafe_allow_html=True
