@@ -12,7 +12,7 @@ if clave != "lourdeswalls":
     st.warning("Clave incorrecta.")
     st.stop()
 
-logo = Image.open("logobueno.png")
+logo = Image.open("logobueno.jpg")
 col1, col2 = st.columns([6, 1])
 with col2:
     st.markdown("<br>" * 3, unsafe_allow_html=True) 
