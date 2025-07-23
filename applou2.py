@@ -122,7 +122,7 @@ with col2:
     meses = st.number_input("Edad (meses)", min_value=0, max_value=11, step=1, value=0)
 
 edad = años + (meses / 12)  
-nombre = st.text_input("Nombre", "")
+nombre = st.text_input("ID Paciente", "")
 valor = st.number_input("Valor observado", min_value=0.0, format="%.2f", value=20.0)
 
 if st.button("Calcular"):
