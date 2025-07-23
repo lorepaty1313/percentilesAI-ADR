@@ -60,14 +60,14 @@ def plot_percentile_curve(sexo, medida, edad_obs, valor_obs, nombre=""):
             curves[p].append(valor)
 
     # Colores según sexo
-    if sexo.lower() == "femenino":
-        color_normal = "#f8bbd0"      # rosa claro
-        color_vigilancia = "#f48fb1"  # rosa medio
+    if sexo.lower() == "femenino": 
+        color_normal = "#ffffff"      # Blanco
+        color_vigilancia = "#f8bbd0"  # rosa claro
         color_critico = "#c2185b"     # rosa fuerte
         line_color = "#880e4f"
     else:
-        color_normal = "#bbdefb"      # azul claro
-        color_vigilancia = "#90caf9"  # azul medio
+        color_normal = "#ffffff"      # blanco
+        color_vigilancia = "#bbdefb"  # azul claro
         color_critico = "#1976d2"     # azul fuerte
         line_color = "#0d47a1"
 
