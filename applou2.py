@@ -13,10 +13,7 @@ if clave != "lourdeswalls":
     st.stop()
 
 logo = Image.open("logobueno.jpg")
-col1, col2 = st.columns([6, 1])
-with col2:
-    st.markdown("<br>" * 3, unsafe_allow_html=True) 
-    st.image(logo, width=1000)
+st.image(logo, use_column_width=True)
 
 # original
 
