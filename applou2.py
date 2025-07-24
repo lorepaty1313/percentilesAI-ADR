@@ -103,18 +103,9 @@ def plot_percentile_curve(sexo, medida, edad_obs, val_izq, val_der, paciente_id)
     for p in percentiles:
         ax.plot(edades, curves[p], color=line_color, alpha=0.6, linewidth=1)
 
-    # Punto observado
-    ax.scatter(edad_obs, valor_obs, color='red', zorder=5)
 
-    # Etiqueta con nombre
-    if nombre:
-        ax.annotate(nombre, (edad_obs, valor_obs),
-                    textcoords="offset points", xytext=(0,10),
-                    ha='center', fontsize=10, color='black', fontweight='bold')
-    else:
-        ax.annotate("Valor observado", (edad_obs, valor_obs),
-                    textcoords="offset points", xytext=(0,10),
-                    ha='center', fontsize=10, color='black')
+
+   
 
     ax.set_title(f'{medida.upper()} - Curvas percentiles ({sexo.capitalize()}) - Paciente {paciente_id}')
     ax.set_xlabel("Edad (años)")
