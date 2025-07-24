@@ -151,14 +151,16 @@ cadera_derecha = st.number_input("Cadera derecha (mm)", min_value=0.0, format="%
 if st.button("Calcular"):
     try:
         L, M, S = lms_parameters(sexo, medida, edad)
-        z = calculate_z_score(valor, L, M, S)
-        percentile = z_to_percentile(z)
+        z_izq = calculate_z_score(cadera_izquierda, L, M, S)
+        z_der = calculate_z_score(cadera_derecha, L, M, S)
+        p_izq = z_to_percentile(z_izq)
+        p_der = z_to_percentile(z_der)
 
         st.success(f"Edad: {edad:.2f} años")
-        st.success(f"Z-score: {z:.2f}")
-        st.success(f"Percentil estimado: {percentile:.2f}")
+        st.success(f"Cadera izquierda → Z: {z_izq:.2f} | Percentil: {p_izq:.2f}")
+        st.success(f"Cadera derecha → Z: {z_der:.2f} | Percentil: {p_der:.2f}")
 
-        fig = plot_percentile_curve(sexo, medida, edad, valor, nombre)
+        fig = plot_percentile_curve(sexo, medida, edad, cadera_izquierda, cadera_derecha, nombre)
         st.pyplot(fig)
 
         st.markdown("---")
