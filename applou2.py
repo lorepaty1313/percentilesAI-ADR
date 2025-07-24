@@ -60,7 +60,7 @@ def calculate_percentile_valor(L, M, S, z):
         return M * np.exp(S * z)
     return M * (1 + L * S * z) ** (1 / L)
 
-def plot_percentile_curve(sexo, medida, edad_obs, valor_obs, nombre=""):
+def plot_percentile_curve(sexo, medida, edad_obs, val_izq, val_der, paciente_id):
     edades = np.linspace(0, 14, 120)
     percentiles = [1, 3, 10, 25, 50, 75, 90, 97, 99]
     z_scores = [stats.norm.ppf(p / 100) for p in percentiles]
@@ -86,6 +86,14 @@ def plot_percentile_curve(sexo, medida, edad_obs, valor_obs, nombre=""):
 
     fig, ax = plt.subplots(figsize=(10, 6))
 
+    # Marcar izquierda: cuadrado negro
+    ax.scatter(edad_obs, val_izq, color='black', marker='s', label='I', zorder=5)
+    ax.annotate("I", (edad_obs, val_izq), textcoords="offset points", xytext=(-10, -10), ha='center', color='black')
+
+    # Marcar derecha: triángulo negro
+    ax.scatter(edad_obs, val_der, color='black', marker='^', label='D', zorder=5)
+    ax.annotate("D", (edad_obs, val_der), textcoords="offset points", xytext=(10, -10), ha='center', color='black')
+
     # Sombrear zonas por riesgo
     ax.fill_between(edades, curves[1], curves[50], color=color_normal, alpha=0.4, label="0–50: Normal")
     ax.fill_between(edades, curves[50], curves[90], color=color_vigilancia, alpha=0.4, label="50–90: Vigilancia")
@@ -108,7 +116,7 @@ def plot_percentile_curve(sexo, medida, edad_obs, valor_obs, nombre=""):
                     textcoords="offset points", xytext=(0,10),
                     ha='center', fontsize=10, color='black')
 
-    ax.set_title(f'{medida.upper()} - Curvas percentiles ({sexo.capitalize()})')
+    ax.set_title(f'{medida.upper()} - Curvas percentiles ({sexo.capitalize()}) - Paciente {paciente_id}')
     ax.set_xlabel("Edad (años)")
     ax.set_ylabel(f"{medida.upper()} valor")
     ax.set_xticks(np.arange(0, 15, 1))
@@ -136,7 +144,8 @@ with col2:
 
 edad = años + (meses / 12)  
 nombre = st.text_input("ID Paciente", "")
-valor = st.number_input("Valor observado", min_value=0.0, format="%.2f", value=20.0)
+adera_izquierda = st.number_input("Cadera izquierda (mm)", min_value=0.0, format="%.2f")
+cadera_derecha = st.number_input("Cadera derecha (mm)", min_value=0.0, format="%.2f")
 
 
 if st.button("Calcular"):
