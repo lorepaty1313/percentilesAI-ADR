@@ -15,7 +15,7 @@ if clave != "lourdeswalls":
 st.markdown(
     """
     <div style='text-align: right;'>
-        <img src='https://raw.githubusercontent.com/lorepaty1313/percentilesAI-ADR/main/logobueno.jpg' width='200'>
+        <img src='https://raw.githubusercontent.com/lorepaty1313/percentilesAI-ADR/main/logobueno.jpg' width='150'>
     </div>
     """,
     unsafe_allow_html=True
