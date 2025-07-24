@@ -87,11 +87,11 @@ def plot_percentile_curve(sexo, medida, edad_obs, val_izq, val_der, paciente_id)
     fig, ax = plt.subplots(figsize=(10, 6))
 
     # Marcar izquierda: cuadrado negro
-    ax.scatter(edad_obs, val_izq, color='black', marker='s', label='I', zorder=5)
+    ax.scatter(edad_obs, val_izq, color='black', marker='s', label='Izquierda', zorder=5)
     ax.annotate("I", (edad_obs, val_izq), textcoords="offset points", xytext=(-10, -10), ha='center', color='black')
 
     # Marcar derecha: triángulo negro
-    ax.scatter(edad_obs, val_der, color='black', marker='^', label='D', zorder=5)
+    ax.scatter(edad_obs, val_der, color='black', marker='^', label='Derecha', zorder=5)
     ax.annotate("D", (edad_obs, val_der), textcoords="offset points", xytext=(10, -10), ha='center', color='black')
 
     # Sombrear zonas por riesgo
