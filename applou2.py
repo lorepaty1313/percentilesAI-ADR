@@ -144,7 +144,7 @@ with col2:
 
 edad = años + (meses / 12)  
 nombre = st.text_input("ID Paciente", "")
-adera_izquierda = st.number_input("Cadera izquierda (mm)", min_value=0.0, format="%.2f")
+cadera_izquierda = st.number_input("Cadera izquierda (mm)", min_value=0.0, format="%.2f")
 cadera_derecha = st.number_input("Cadera derecha (mm)", min_value=0.0, format="%.2f")
 
 
