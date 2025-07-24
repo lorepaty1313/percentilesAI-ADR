@@ -88,11 +88,11 @@ def plot_percentile_curve(sexo, medida, edad_obs, val_izq, val_der, paciente_id)
 
     # Marcar izquierda: cuadrado negro
     ax.scatter(edad_obs, val_izq, color='black', marker='s', label='Izquierda', zorder=5)
-    ax.annotate("I", (edad_obs, val_izq), textcoords="offset points", xytext=(-10, -10), ha='center', color='black')
+    ax.annotate("Izq", (edad_obs, val_izq), textcoords="offset points", xytext=(-10, -10), ha='center', color='black')
 
     # Marcar derecha: triángulo negro
     ax.scatter(edad_obs, val_der, color='black', marker='^', label='Derecha', zorder=5)
-    ax.annotate("D", (edad_obs, val_der), textcoords="offset points", xytext=(10, -10), ha='center', color='black')
+    ax.annotate("Der", (edad_obs, val_der), textcoords="offset points", xytext=(10, -10), ha='center', color='black')
 
     # Sombrear zonas por riesgo
     ax.fill_between(edades, curves[1], curves[50], color=color_normal, alpha=0.4, label="0–50: Normal")
