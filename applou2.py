@@ -220,13 +220,13 @@ if st.button("Calcular y mostrar gráficas"):
     x_val = edad_to_x.get(edad_key, None)
     generar_segunda = x_val is not None  # NUEVA VARIABLE DE CONTROL
 
-if generar_segunda:
-    xticks = [0, .95, 1.86, 2.78, 3.7, 4.58, 5.48, 6.42, 7.6, 8.8, 10]
-    etiquetas_xticks = [
-        "1 - 2 meses", "3 - 4 meses", "5 - 6 meses", "7 - 9 meses", "10 - 12 meses",
-        "1 año 1 mes - 1 año 3 meses", "1 año 4 meses -1 año 6 meses", "1 año 7 meses - 2 años",
-        "2 años 1 mes - 3 años", "3 años 1 mes - 5 años", "5 años 1 mes - 7años"
-    ]
+    if generar_segunda:
+        xticks = [0, .95, 1.86, 2.78, 3.7, 4.58, 5.48, 6.42, 7.6, 8.8, 10]
+        etiquetas_xticks = [
+            "1 - 2 meses", "3 - 4 meses", "5 - 6 meses", "7 - 9 meses", "10 - 12 meses",
+            "1 año 1 mes - 1 año 3 meses", "1 año 4 meses -1 año 6 meses", "1 año 7 meses - 2 años",
+            "2 años 1 mes - 3 años", "3 años 1 mes - 5 años", "5 años 1 mes - 7años"
+        ]
 
     fig2, ax2 = plt.subplots(figsize=(22, 10))
     ax2.imshow(img, extent=[0, 10, -2.5, 42], aspect='auto')
