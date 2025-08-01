@@ -316,7 +316,7 @@ pdf.multi_cell(0, 5,
     "Normal Percentile Reference Curves and Correlation of Acetabular Index and Acetabular Depth Ratio in Children. "
     "J Pediatr Orthop. 2018 Mar;38(3):163-169. doi:10.1097/BPO.0000000000000791\n\n"
     "Tönnis D. Normal values of the hip joint for the evaluation of X-rays in children and adults. "
-    "Clin Orthop Relat Res. 1976;119:39-47"
+    "Clin Orthop Relat Res.1976;119:39-47"
 )
 # Descargar PDF
 pdf_output = BytesIO()
