@@ -308,7 +308,7 @@ if generar_segunda:
     pdf.ln(10)
 
 # Referencias
-pdf.set_font("Arial", 'B', 12)
+pdf.set_font("Arial", 'B', 11)
 pdf.cell(0, 10, "Referencias:", ln=True)
 pdf.set_font("Arial", '', 10)
 pdf.multi_cell(0, 5,
