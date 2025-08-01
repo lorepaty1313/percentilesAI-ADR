@@ -82,7 +82,7 @@ with col3:
     angulo_izq = st.number_input("AI / Ángulo cadera izquierda", min_value=0.0, format="%.2f")
 with col4:
     angulo_der = st.number_input("AI / Ángulo cadera derecha", min_value=0.0, format="%.2f")
-
+fig1 = none
 # --- CALCULO Y GRAFICADO ---
 if st.button("Calcular y mostrar gráficas"):
     # Calcular percentiles
