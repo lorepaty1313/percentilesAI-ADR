@@ -284,11 +284,11 @@ pdf = FPDF()
 pdf.add_page()
 
 # Título
-pdf.set_font("Arial", 'B', 16)
+pdf.set_font("Arial", 'B', 13)
 pdf.cell(0, 10, f"Evaluación AI - Paciente {nombre}", ln=True)
 
 # Edad
-pdf.set_font("Arial", '', 12)
+pdf.set_font("Arial", '', 11)
 pdf.cell(0, 10, f"Edad: {int(años)} años {int(meses)} meses", ln=True)
 pdf.ln(5)
 
@@ -308,9 +308,9 @@ if generar_segunda:
     pdf.ln(10)
 
 # Referencias
-pdf.set_font("Arial", 'B', 11)
+pdf.set_font("Arial", 'B', 9)
 pdf.cell(0, 10, "Referencias:", ln=True)
-pdf.set_font("Arial", '', 10)
+pdf.set_font("Arial", '', 8)
 pdf.multi_cell(0, 5,
     "Novais EN, Pan Z, Autruong PT, Meyers ML, Chang FM. "
     "Normal Percentile Reference Curves and Correlation of Acetabular Index and Acetabular Depth Ratio in Children. "
