@@ -218,7 +218,8 @@ if st.button("Calcular y mostrar gráficas"):
     }
     edad_key = f"{int(años)} años {int(meses)} meses"
     x_val = edad_to_x.get(edad_key, None)
-    generar_segunda = x_val is not None  # NUEVA VARIABLE DE CONTROL
+
+generar_segunda = x_val is not None  # NUEVA VARIABLE DE CONTROL
 
 if generar_segunda:
     xticks = [0, .95, 1.86, 2.78, 3.7, 4.58, 5.48, 6.42, 7.6, 8.8, 10]
