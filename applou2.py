@@ -89,16 +89,15 @@ nombre = st.text_input("ID Paciente", "")
 st.markdown("### Valores de referencia (Novais y Tönnis)")
 colN1, colN2 = st.columns(2)
 with colN1:
-    novais_izq = st.number_input("Novais Izquierda", min_value=0.0, format="%.2f")
+    novais_der = st.number_input("IA-S derecho", min_value=0.0, format="%.2f")
 with colN2:
-    novais_der = st.number_input("Novais Derecha", min_value=0.0, format="%.2f")
-
+    novais_izq = st.number_input("IA-S izquierdo", min_value=0.0, format="%.2f")
+    
 colT1, colT2 = st.columns(2)
 with colT1:
-    tonnis_izq = st.number_input("Tönnis Izquierda", min_value=0.0, format="%.2f")
+    tonnis_der = st.number_input("IA-L derecho", min_value=0.0, format="%.2f")
 with colT2:
-    tonnis_der = st.number_input("Tönnis Derecha", min_value=0.0, format="%.2f")
-
+    tonnis_izq = st.number_input("IA-L izquierdo", min_value=0.0, format="%.2f")
 # col3, col4 = st.columns(2)
 #with col3:
  #   angulo_izq = st.number_input("AI / Ángulo cadera izquierda", min_value=0.0, format="%.2f")
