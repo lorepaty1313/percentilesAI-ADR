@@ -1,4 +1,5 @@
 
+
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -65,6 +66,14 @@ def calculate_percentile_valor(L, M, S, z):
     return M * (1 + L * S * z) ** (1 / L)
 
 # --- ENTRADA DE DATOS ---
+
+st.markdown("### Subir radiografías opcionales (JPEG, PNG)")
+
+imagenes_subidas = st.file_uploader(
+    "Puedes subir una o dos imágenes (radiografías) opcionalmente:",
+    type=["jpg", "jpeg", "png"],
+    accept_multiple_files=True
+)
 st.title("Evaluación AI y Curva de Imagen de Referencia")
 
 sexo = st.selectbox("Sexo del paciente", ["femenino", "masculino"])
@@ -77,12 +86,25 @@ with col2:
 edad = años + (meses / 12)
 nombre = st.text_input("ID Paciente", "")
 
-col3, col4 = st.columns(2)
-with col3:
-    angulo_izq = st.number_input("AI / Ángulo cadera izquierda", min_value=0.0, format="%.2f")
-with col4:
-    angulo_der = st.number_input("AI / Ángulo cadera derecha", min_value=0.0, format="%.2f")
-fig1 = None
+st.markdown("### Valores de referencia (Novais y Tönnis)")
+colN1, colN2 = st.columns(2)
+with colN1:
+    novais_izq = st.number_input("Novais Izquierda", min_value=0.0, format="%.2f")
+with colN2:
+    novais_der = st.number_input("Novais Derecha", min_value=0.0, format="%.2f")
+
+colT1, colT2 = st.columns(2)
+with colT1:
+    tonnis_izq = st.number_input("Tönnis Izquierda", min_value=0.0, format="%.2f")
+with colT2:
+    tonnis_der = st.number_input("Tönnis Derecha", min_value=0.0, format="%.2f")
+
+# col3, col4 = st.columns(2)
+#with col3:
+ #   angulo_izq = st.number_input("AI / Ángulo cadera izquierda", min_value=0.0, format="%.2f")
+#with col4:
+ #   angulo_der = st.number_input("AI / Ángulo cadera derecha", min_value=0.0, format="%.2f")
+#fig1 = None
 # --- CALCULO Y GRAFICADO ---
 if st.button("Calcular y mostrar gráficas"):
     # Calcular percentiles
@@ -95,6 +117,7 @@ if st.button("Calcular y mostrar gráficas"):
     st.success(f"AI - Edad: {edad:.2f} años")
     st.success(f"AI izquierda → Z: {z_izq:.2f} | Percentil: {p_izq:.2f}")
     st.success(f"AI derecha → Z: {z_der:.2f} | Percentil: {p_der:.2f}")
+
 
     # Gráfica 1: Curva LMS
     edades = np.linspace(0, 14, 120)
@@ -116,10 +139,11 @@ if st.button("Calcular y mostrar gráficas"):
     ax1.fill_between(edades, curves[90], curves[99], color=color_critico, alpha=0.4, label="90–99: Crítico")
     for p in percentiles:
         ax1.plot(edades, curves[p], color=color_linea, alpha=0.6, linewidth=1)
-    ax1.scatter(edad, angulo_izq, color='black', marker='s', zorder=5, label="Cadera Izquierda")
-    ax1.annotate("Izq", (edad, angulo_izq), textcoords="offset points", xytext=(-10, -10), fontsize=12)
-    ax1.scatter(edad, angulo_der, color='black', marker='^', zorder=5, label="Cadera Derecha")
-    ax1.annotate("Der", (edad, angulo_der), textcoords="offset points", xytext=(10, -10), fontsize=12)
+    # Puntos de referencia Novais
+    ax1.scatter(edad, novais_izq, color='red', marker='o', zorder=5, label="Novais Izq")
+    ax1.annotate("N Izq", (edad, novais_izq), textcoords="offset points", xytext=(-15, 10), fontsize=10, color='red')
+    ax1.scatter(edad, novais_der, color='blue', marker='x', zorder=5, label="Novais Der")
+    ax1.annotate("N Der", (edad, novais_der), textcoords="offset points", xytext=(10, 10), fontsize=10, color='blue')
     ax1.set_title(f'AI - Curvas percentiles ({sexo.capitalize()}) - Paciente {nombre}')
     ax1.set_xlabel("Edad (años)")
     ax1.set_ylabel("AI (mm)")
@@ -230,10 +254,12 @@ if st.button("Calcular y mostrar gráficas"):
 
     fig2, ax2 = plt.subplots(figsize=(22, 10))
     ax2.imshow(img, extent=[0, 10, -2.5, 42], aspect='auto')
-    ax2.plot(x_val, angulo_izq, 'ks', markersize=15, label="Cadera izquierda")
-    ax2.plot(x_val, angulo_der, 'k^', markersize=15, label="Cadera derecha")
-    ax2.text(x_val + 0.1, angulo_izq + 1, "izq", color='black', fontsize=16, weight='bold')
-    ax2.text(x_val + 0.1, angulo_der + 1, "Der", color='black', fontsize=16, weight='bold')
+    # Puntos de referencia Tönnis
+    ax2.plot(x_val, tonnis_izq, 'ro', markersize=12, label="Tönnis Izq")
+    ax2.text(x_val + 0.1, tonnis_izq + 1, "T N Izq", color='red', fontsize=12, weight='bold')
+
+    ax2.plot(x_val, tonnis_der, 'bx', markersize=12, label="Tönnis Der")
+    ax2.text(x_val + 0.1, tonnis_der + 1, "T N Der", color='blue', fontsize=12, weight='bold')
     ax2.set_xticks(xticks)
     ax2.set_xticklabels(etiquetas_xticks, rotation=45, ha='right', fontsize=14)
     ax2.set_xlim(0, 10)
@@ -292,6 +318,20 @@ pdf.set_font("Arial", '', 11)
 pdf.cell(0, 10, f"Edad: {int(años)} años {int(meses)} meses", ln=True)
 pdf.ln(5)
 
+pdf.set_font("Arial", 'B', 11)
+pdf.cell(0, 10, "Valores de Novais:", ln=True)
+pdf.set_font("Arial", '', 11)
+pdf.cell(0, 10, f"Novais Izquierda: {novais_izq:.2f}°", ln=True)
+pdf.cell(0, 10, f"Novais Derecha: {novais_der:.2f}°", ln=True)
+pdf.ln(5)
+
+# Valores Tönnis
+pdf.set_font("Arial", 'B', 11)
+pdf.cell(0, 10, "Valores de Tönnis:", ln=True)
+pdf.set_font("Arial", '', 11)
+pdf.cell(0, 10, f"Tönnis Izquierda: {tonnis_izq:.2f}°", ln=True)
+pdf.cell(0, 10, f"Tönnis Derecha: {tonnis_der:.2f}°", ln=True)
+pdf.ln(5)
 # Insertar primera imagen
 img1 = Image.open(buf1)
 img1_path = "/tmp/fig1.png"
@@ -307,6 +347,16 @@ if generar_segunda:
     pdf.image(img2_path, w=150)
     pdf.ln(10)
 
+
+if imagenes_subidas:
+    pdf.set_font("Arial", 'B', 11)
+    pdf.cell(0, 10, "Radiografías proporcionadas:", ln=True)
+    for i, archivo in enumerate(imagenes_subidas):
+        img_rdg = Image.open(archivo)
+        img_path = f"/tmp/radiografia_{i}.png"
+        img_rdg.save(img_path)
+        pdf.image(img_path, w=150)
+        pdf.ln(5)
 # Referencias
 pdf.set_font("Arial", 'B', 9)
 pdf.cell(0, 10, "Referencias:", ln=True)
@@ -330,4 +380,3 @@ st.download_button(
     file_name=f"evaluacion_AI_{nombre.replace(' ', '_')}.pdf",
     mime="application/pdf"
 )
-
