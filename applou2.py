@@ -143,9 +143,9 @@ if st.button("Calcular y mostrar gráficas"):
     # Puntos de referencia Novais
     ax1.scatter(edad, novais_izq, color='blue', marker='o', s=10, zorder=5, label="Izquierda")
     ax1.annotate("Izq", (edad, novais_izq), textcoords="offset points", xytext=(-20, 12), fontsize=10, color='blue')
-    ax1.scatter(edad, novais_der, color='green', marker='s', s=20, zorder=5, label="Der")
+    ax1.scatter(edad, novais_der, color='green', marker='s', s=20, zorder=5, label="Derecha")
     ax1.annotate("Der", (edad, novais_der), textcoords="offset points", xytext=(10, 12), fontsize=10, color='green')
-    ax1.annotate("Novais Derecha", (edad, novais_der), textcoords="offset points", xytext=(10, 10), fontsize=10, color='blue')
+    
     ax1.set_title(f'AI - Curvas percentiles valores de Novais ({sexo.capitalize()}) - Paciente {nombre}')
     ax1.set_xlabel("Edad (años)")
     ax1.set_ylabel("AI (mm)")
