@@ -317,28 +317,38 @@ pdf = FPDF()
 pdf.add_page()
 
 # Título
+# Título
 pdf.set_font("Arial", 'B', 13)
 pdf.cell(0, 10, f"Evaluación AI - Paciente {nombre}", ln=True)
-
-# Edad
 pdf.set_font("Arial", '', 11)
 pdf.cell(0, 10, f"Edad: {int(años)} años {int(meses)} meses", ln=True)
-pdf.ln(5)
 
+# Primera columna: Novais
+pdf.set_xy(10, 40)
 pdf.set_font("Arial", 'B', 11)
-pdf.cell(0, 10, "Valores de Novais:", ln=True)
+pdf.cell(90, 10, "Valores de Novais:", ln=True)
 pdf.set_font("Arial", '', 11)
-pdf.cell(0, 10, f"Novais Izquierda: {novais_izq:.2f}°", ln=True)
-pdf.cell(0, 10, f"Novais Derecha: {novais_der:.2f}°", ln=True)
-pdf.ln(5)
+pdf.set_xy(10, 50)
+pdf.multi_cell(90, 10,
+    f"Izquierda: {novais_izq:.2f}°\nDerecha: {novais_der:.2f}°")
 
-# Valores Tönnis
+# Segunda columna: Tönnis
+pdf.set_xy(110, 40)
 pdf.set_font("Arial", 'B', 11)
-pdf.cell(0, 10, "Valores de Tönnis:", ln=True)
+pdf.cell(90, 10, "Valores de Tönnis:", ln=True)
 pdf.set_font("Arial", '', 11)
-pdf.cell(0, 10, f"Tönnis Izquierda: {tonnis_izq:.2f}°", ln=True)
-pdf.cell(0, 10, f"Tönnis Derecha: {tonnis_der:.2f}°", ln=True)
-pdf.ln(5)
+pdf.set_xy(110, 50)
+pdf.multi_cell(90, 10,
+    f"Izquierda: {tonnis_izq:.2f}°\nDerecha: {tonnis_der:.2f}°")
+
+# Imágenes
+pdf.set_xy(10, 80)
+pdf.image(img1_path, x=10, w=90)
+
+if generar_segunda:
+    pdf.image(img2_path, x=110, w=90)
+
+pdf.ln(100)
 # Insertar primera imagen
 if buf1 is not None:
     img1 = Image.open(buf1)
@@ -385,19 +395,7 @@ pdf.multi_cell(0, 5,
 )
 # Descargar PDF
 
-if buf1:
-    img1 = Image.open(buf1)
-    img1_path = "/tmp/fig1.png"
-    img1.save(img1_path)
-    pdf.image(img1_path, w=150)
-    pdf.ln(5)
 
-if buf2:
-    img2 = Image.open(buf2)
-    img2_path = "/tmp/fig2.png"
-    img2.save(img2_path)
-    pdf.image(img2_path, w=150)
-    pdf.ln(10)
 pdf_output = BytesIO()
 pdf_bytes = pdf.output(dest='S').encode('latin1')  # 'S' = return as string
 pdf_output = BytesIO(pdf_bytes)
