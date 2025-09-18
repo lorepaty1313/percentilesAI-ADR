@@ -293,9 +293,22 @@ try:
 except Exception as e:
         st.error(f"Ocurrió un error: {e}")
 
-from PIL import Image
+
 
 # Guardar las gráficas como imágenes en memoria
+from PIL import Image
+
+# Guardar las gráficas como imágenes en memoria solo si se generaron
+buf1, buf2 = None, None
+if fig1:
+    buf1 = BytesIO()
+    fig1.savefig(buf1, format="png", bbox_inches='tight')
+    buf1.seek(0)
+
+if generar_segunda and fig2:
+    buf2 = BytesIO()
+    fig2.savefig(buf2, format="png", bbox_inches='tight')
+    buf2.seek(0)
 buf1 = BytesIO()
 fig1.savefig(buf1, format="png", bbox_inches='tight')
 buf1.seek(0)
@@ -369,6 +382,20 @@ pdf.multi_cell(0, 5,
     "Clin Orthop Relat Res.1976;119:39-47"
 )
 # Descargar PDF
+
+if buf1:
+    img1 = Image.open(buf1)
+    img1_path = "/tmp/fig1.png"
+    img1.save(img1_path)
+    pdf.image(img1_path, w=150)
+    pdf.ln(5)
+
+if buf2:
+    img2 = Image.open(buf2)
+    img2_path = "/tmp/fig2.png"
+    img2.save(img2_path)
+    pdf.image(img2_path, w=150)
+    pdf.ln(10)
 pdf_output = BytesIO()
 pdf_bytes = pdf.output(dest='S').encode('latin1')  # 'S' = return as string
 pdf_output = BytesIO(pdf_bytes)
