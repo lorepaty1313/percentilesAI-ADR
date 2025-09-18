@@ -300,7 +300,7 @@ from PIL import Image
 
 # Guardar las gráficas como imágenes en memoria solo si se generaron
 buf1, buf2 = None, None
-if fig1:
+if 'fig1' in locals():
     buf1 = BytesIO()
     fig1.savefig(buf1, format="png", bbox_inches='tight')
     buf1.seek(0)
@@ -313,11 +313,10 @@ buf1 = BytesIO()
 fig1.savefig(buf1, format="png", bbox_inches='tight')
 buf1.seek(0)
 
-if generar_segunda:
+if 'fig2' in locals() and generar_segunda:
     buf2 = BytesIO()
     fig2.savefig(buf2, format="png", bbox_inches='tight')
     buf2.seek(0)
-
 # Crear el PDF con fpdf
 pdf = FPDF()
 pdf.add_page()
