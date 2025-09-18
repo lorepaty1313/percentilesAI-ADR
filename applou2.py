@@ -141,9 +141,10 @@ if st.button("Calcular y mostrar gráficas"):
     for p in percentiles:
         ax1.plot(edades, curves[p], color=color_linea, alpha=0.6, linewidth=1)
     # Puntos de referencia Novais
-    ax1.scatter(edad, novais_izq, color='red', marker='o', zorder=5, label="Novais Izq")
-    ax1.annotate("N Izq", (edad, novais_izq), textcoords="offset points", xytext=(-15, 10), fontsize=10, color='red')
-    ax1.scatter(edad, novais_der, color='blue', marker='x', zorder=5, label="Novais Der")
+    ax1.scatter(edad, novais_izq, color='blue', marker='o', s=100, zorder=5, label="Novais Izq")
+    ax1.annotate("Novais Izq", (edad, novais_izq), textcoords="offset points", xytext=(-20, 12), fontsize=10, color='blue')
+    ax1.scatter(edad, novais_der, color='green', marker='s', s=100, zorder=5, label="Novais Der")
+    ax1.annotate("Novais Der", (edad, novais_der), textcoords="offset points", xytext=(10, 12), fontsize=10, color='green')
     ax1.annotate("N Der", (edad, novais_der), textcoords="offset points", xytext=(10, 10), fontsize=10, color='blue')
     ax1.set_title(f'AI - Curvas percentiles ({sexo.capitalize()}) - Paciente {nombre}')
     ax1.set_xlabel("Edad (años)")
@@ -255,12 +256,11 @@ if st.button("Calcular y mostrar gráficas"):
 
     fig2, ax2 = plt.subplots(figsize=(22, 10))
     ax2.imshow(img, extent=[0, 10, -2.5, 42], aspect='auto')
-    # Puntos de referencia Tönnis
-    ax2.plot(x_val, tonnis_izq, 'ro', markersize=12, label="Tönnis Izq")
-    ax2.text(x_val + 0.1, tonnis_izq + 1, "T N Izq", color='red', fontsize=12, weight='bold')
-
-    ax2.plot(x_val, tonnis_der, 'bx', markersize=12, label="Tönnis Der")
-    ax2.text(x_val + 0.1, tonnis_der + 1, "T N Der", color='blue', fontsize=12, weight='bold')
+    ax2.plot(x_val, tonnis_izq, 'bo', markersize=12, label="Tönnis Izq")  # azul círculo
+    ax2.text(x_val + 0.2, tonnis_izq + 1.5, "Tönnis Izq", color='blue', fontsize=12)
+    
+    ax2.plot(x_val, tonnis_der, 'gs', markersize=12, label="Tönnis Der")  # verde cuadrado
+    ax2.text(x_val + 0.2, tonnis_der + 1.5, "Tönnis Der", color='green', fontsize=12)
     ax2.set_xticks(xticks)
     ax2.set_xticklabels(etiquetas_xticks, rotation=45, ha='right', fontsize=14)
     ax2.set_xlim(0, 10)
@@ -319,7 +319,7 @@ pdf.add_page()
 
 # Título
 pdf.set_font("Arial", 'B', 13)
-pdf.cell(0, 10, f"Evaluación AI - Paciente {nombre}", ln=True)
+pdf.cell(0, 10, f"Evaluación AI - ID Paciente {nombre}", ln=True)
 
 # Edad
 pdf.set_font("Arial", '', 11)
