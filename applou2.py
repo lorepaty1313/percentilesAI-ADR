@@ -257,17 +257,17 @@ if st.button("Calcular y mostrar gráficas"):
     fig2, ax2 = plt.subplots(figsize=(22, 10))
     ax2.imshow(img, extent=[0, 10, -2.5, 42], aspect='auto')
     ax2.plot(x_val, tonnis_izq, 'bo', markersize=12, label="Tönnis Izquierda")  # azul círculo
-    ax2.text(x_val + 0.2, tonnis_izq + 1.5, "Izq", color='blue', fontsize=12)
+    ax2.text(x_val + 0.2, tonnis_izq + 1.5, "Izq", color='blue', fontsize=14)
     
     ax2.plot(x_val, tonnis_der, 'gs', markersize=12, label="Tönnis Derecha")  # verde cuadrado
-    ax2.text(x_val + 0.2, tonnis_der + 1.5, "Der", color='green', fontsize=12)
+    ax2.text(x_val + 0.2, tonnis_der + 1.5, "Der", color='green', fontsize=14)
     ax2.set_xticks(xticks)
     ax2.set_xticklabels(etiquetas_xticks, rotation=45, ha='right', fontsize=14)
     ax2.set_xlim(0, 10)
     ax2.set_ylim(0, 42)
     ax2.set_xlabel("Edad", fontsize=18)
     ax2.set_ylabel("Ángulo acetabular (°)", fontsize=18)
-    ax2.set_title(f"Curvas estimadas sobre imagen de referencia - Paciente {nombre}", fontsize=20)
+    ax2.set_title(f"Curvas estimadas sobre imagen de referencia (Tönnis) - Paciente {nombre}", fontsize=20)
     ax2.grid(True, linestyle='--', alpha=0.5)
     ax2.legend(fontsize=14)
     st.pyplot(fig2)
