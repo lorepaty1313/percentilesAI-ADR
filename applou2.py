@@ -141,7 +141,7 @@ if st.button("Calcular y mostrar gráficas"):
     for p in percentiles:
         ax1.plot(edades, curves[p], color=color_linea, alpha=0.6, linewidth=1)
     # Puntos de referencia Novais
-    ax1.scatter(edad, novais_izq, color='blue', marker='o', s=10, zorder=5, label="Izquierda")
+    ax1.scatter(edad, novais_izq, color='blue', marker='o', s=20, zorder=5, label="Izquierda")
     ax1.annotate("Izq", (edad, novais_izq), textcoords="offset points", xytext=(-20, 12), fontsize=10, color='blue')
     ax1.scatter(edad, novais_der, color='green', marker='s', s=20, zorder=5, label="Derecha")
     ax1.annotate("Der", (edad, novais_der), textcoords="offset points", xytext=(10, 12), fontsize=10, color='green')
