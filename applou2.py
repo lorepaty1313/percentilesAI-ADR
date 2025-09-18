@@ -142,9 +142,9 @@ if st.button("Calcular y mostrar gráficas"):
         ax1.plot(edades, curves[p], color=color_linea, alpha=0.6, linewidth=1)
     # Puntos de referencia Novais
     ax1.scatter(edad, novais_izq, color='black', marker='o', s=20, zorder=5, label="Izquierda")
-    ax1.annotate("Izq", (edad, novais_izq), textcoords="offset points", xytext=(-20, 12), fontsize=10, color='black')
+    # ax1.annotate("Izq", (edad, novais_izq), textcoords="offset points", xytext=(-20, 12), fontsize=10, color='black')
     ax1.scatter(edad, novais_der, color='black', marker='s', s=20, zorder=5, label="Derecha")
-    ax1.annotate("Der", (edad, novais_der), textcoords="offset points", xytext=(10, 12), fontsize=10, color='black')
+    # ax1.annotate("Der", (edad, novais_der), textcoords="offset points", xytext=(10, 12), fontsize=10, color='black')
     
     ax1.set_title(f'AI - Curvas percentiles valores de Novais et al ({sexo.capitalize()}) - Paciente {nombre}')
     ax1.set_xlabel("Edad (años)")
@@ -256,10 +256,10 @@ if st.button("Calcular y mostrar gráficas"):
 
     fig2, ax2 = plt.subplots(figsize=(22, 10))
     ax2.imshow(img, extent=[0, 10, -2.5, 42], aspect='auto')
-    ax2.plot(x_val, tonnis_izq, 'ko', markersize=12, label="Izquierda")  # azul círculo
+    ax2.plot(x_val, tonnis_izq, 'ko', markersize=12)  # azul círculo
     ax2.text(x_val + 0.2, tonnis_izq + 1.5, "Izq", color='black', fontsize=14)
     
-    ax2.plot(x_val, tonnis_der, 'ks', markersize=12, label="Derecha")  # verde cuadrado
+    ax2.plot(x_val, tonnis_der, 'ks', markersize=12)  # verde cuadrado
     ax2.text(x_val + 0.2, tonnis_der + 1.5, "Der", color='black', fontsize=14)
     ax2.set_xticks(xticks)
     ax2.set_xticklabels(etiquetas_xticks, rotation=45, ha='right', fontsize=14)
