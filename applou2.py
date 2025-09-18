@@ -106,6 +106,7 @@ with colT2:
  #   angulo_der = st.number_input("AI / Ángulo cadera derecha", min_value=0.0, format="%.2f")
 #fig1 = None
 # --- CALCULO Y GRAFICADO ---
+generar_segunda = False 
 if st.button("Calcular y mostrar gráficas"):
     # Calcular percentiles
     L, M, S = lms_parameters(sexo, "AI", edad)
