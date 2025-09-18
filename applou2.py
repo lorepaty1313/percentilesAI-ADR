@@ -86,7 +86,7 @@ with col2:
 edad = años + (meses / 12)
 nombre = st.text_input("ID Paciente", "")
 
-st.markdown("### Valores de referencia (Novais y Tönnis)")
+st.markdown("### Valores de referencia")
 colN1, colN2 = st.columns(2)
 with colN1:
     novais_der = st.number_input("IA-S derecho", min_value=0.0, format="%.2f")
@@ -323,7 +323,7 @@ pdf.add_page()
 
 # Título
 pdf.set_font("Arial", 'B', 13)
-pdf.cell(0, 10, f"Evaluación AI - ID Paciente {nombre}", ln=True)
+pdf.cell(0, 10, f"Evaluación radiográfica de caderas Paciente {nombre}", ln=True)
 
 # Edad
 pdf.set_font("Arial", '', 11)
@@ -332,13 +332,13 @@ pdf.ln(5)
 
 # Valores en dos columnas
 pdf.set_font("Arial", 'B', 11)
-pdf.cell(0, 10, "Valores de Novais y Tönnis:", ln=True)
+pdf.cell(0, 10, "Valores de Índice Acetabular:", ln=True)
 
 pdf.set_font("Arial", '', 11)
-pdf.cell(95, 10, f"Novais Izquierda: {novais_izq:.2f}°", ln=False)
-pdf.cell(95, 10, f"Tönnis Izquierda: {tonnis_izq:.2f}°", ln=True)
-pdf.cell(95, 10, f"Novais Derecha: {novais_der:.2f}°", ln=False)
-pdf.cell(95, 10, f"Tönnis Derecha: {tonnis_der:.2f}°", ln=True)
+pdf.cell(95, 10, f"IA Izquierda: {novais_izq:.2f}°", ln=False)
+pdf.cell(95, 10, f"IL Izquierda: {tonnis_izq:.2f}°", ln=True)
+pdf.cell(95, 10, f"IA Derecha: {novais_der:.2f}°", ln=False)
+pdf.cell(95, 10, f"IL Derecha: {tonnis_der:.2f}°", ln=True)
 pdf.ln(5)
 
 # Insertar primera imagen (fig1)
@@ -360,7 +360,7 @@ if generar_segunda and buf2:
 if imagenes_subidas:
     pdf.add_page()
     pdf.set_font("Arial", 'B', 11)
-    pdf.cell(0, 10, "Radiografías proporcionadas:", ln=True)
+    pdf.cell(0, 10, "Mediciones Radiográficas:", ln=True)
     for i, archivo in enumerate(imagenes_subidas):
         img_rdg = Image.open(archivo)
         img_path = f"/tmp/radiografia_{i}.png"
