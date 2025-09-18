@@ -347,7 +347,7 @@ if buf1:
     img1 = Image.open(buf1)
     img1_path = "/tmp/fig1.png"
     img1.save(img1_path)
-    pdf.image(img1_path, x=10, w=150) 
+    pdf.image(img1_path, x=9, w=130) 
     pdf.ln(5)# Gráfica 1 (Novais)
 
 # Insertar segunda imagen (fig2)
@@ -355,7 +355,7 @@ if generar_segunda and buf2:
     img2 = Image.open(buf2)
     img2_path = "/tmp/fig2.png"
     img2.save(img2_path)
-    pdf.image(img2_path, x=10, w=150)  # Gráfica 2 (Tönnis)
+    pdf.image(img2_path, x=9, w=130)  # Gráfica 2 (Tönnis)
 
 # Agregar nueva página para radiografías
 if imagenes_subidas:
@@ -366,7 +366,7 @@ if imagenes_subidas:
         img_rdg = Image.open(archivo)
         img_path = f"/tmp/radiografia_{i}.png"
         img_rdg.save(img_path)
-        pdf.image(img_path, w=150)
+        pdf.image(img_path, w=130)
         pdf.ln(5)
 
 # Referencias al final
