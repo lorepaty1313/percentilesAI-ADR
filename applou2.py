@@ -339,11 +339,19 @@ pdf.cell(0, 10, f"Tönnis Izquierda: {tonnis_izq:.2f}°", ln=True)
 pdf.cell(0, 10, f"Tönnis Derecha: {tonnis_der:.2f}°", ln=True)
 pdf.ln(5)
 # Insertar primera imagen
-img1 = Image.open(buf1)
-img1_path = "/tmp/fig1.png"
-img1.save(img1_path)
-pdf.image(img1_path, w=150)
-pdf.ln(5)
+if buf1 is not None:
+    img1 = Image.open(buf1)
+    img1_path = "/tmp/fig1.png"
+    img1.save(img1_path)
+    pdf.image(img1_path, w=150)
+    pdf.ln(5)
+
+if buf2 is not None:
+    img2 = Image.open(buf2)
+    img2_path = "/tmp/fig2.png"
+    img2.save(img2_path)
+    pdf.image(img2_path, w=150)
+    pdf.ln(10)
 
 # Insertar segunda imagen
 if generar_segunda:
