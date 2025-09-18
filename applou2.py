@@ -349,6 +349,8 @@ if generar_segunda:
     pdf.image(img2_path, x=110, w=90)
 
 pdf.ln(100)
+
+
 # Insertar primera imagen
 if buf1 is not None:
     img1 = Image.open(buf1)
@@ -373,7 +375,9 @@ if generar_segunda:
     pdf.ln(10)
 
 
+
 if imagenes_subidas:
+    pdf.add_page()
     pdf.set_font("Arial", 'B', 11)
     pdf.cell(0, 10, "Radiografías proporcionadas:", ln=True)
     for i, archivo in enumerate(imagenes_subidas):
