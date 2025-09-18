@@ -141,11 +141,11 @@ if st.button("Calcular y mostrar gráficas"):
     for p in percentiles:
         ax1.plot(edades, curves[p], color=color_linea, alpha=0.6, linewidth=1)
     # Puntos de referencia Novais
-    ax1.scatter(edad, novais_izq, color='blue', marker='o', s=100, zorder=5, label="Novais Izq")
-    ax1.annotate("Novais Izq", (edad, novais_izq), textcoords="offset points", xytext=(-20, 12), fontsize=10, color='blue')
-    ax1.scatter(edad, novais_der, color='green', marker='s', s=100, zorder=5, label="Novais Der")
-    ax1.annotate("Novais Der", (edad, novais_der), textcoords="offset points", xytext=(10, 12), fontsize=10, color='green')
-    ax1.annotate("N Der", (edad, novais_der), textcoords="offset points", xytext=(10, 10), fontsize=10, color='blue')
+    ax1.scatter(edad, novais_izq, color='blue', marker='o', s=10, zorder=5, label="Izq")
+    ax1.annotate("Novais Izqquierda", (edad, novais_izq), textcoords="offset points", xytext=(-20, 12), fontsize=10, color='blue')
+    ax1.scatter(edad, novais_der, color='green', marker='s', s=20, zorder=5, label="Der")
+    ax1.annotate("Novais Derecha", (edad, novais_der), textcoords="offset points", xytext=(10, 12), fontsize=10, color='green')
+    ax1.annotate("Der", (edad, novais_der), textcoords="offset points", xytext=(10, 10), fontsize=10, color='blue')
     ax1.set_title(f'AI - Curvas percentiles ({sexo.capitalize()}) - Paciente {nombre}')
     ax1.set_xlabel("Edad (años)")
     ax1.set_ylabel("AI (mm)")
