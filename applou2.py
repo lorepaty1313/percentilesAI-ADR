@@ -323,7 +323,7 @@ pdf.add_page()
 
 # Título
 pdf.set_font("Arial", 'B', 13)
-pdf.cell(0, 10, f"Evaluación radiográfica de caderas Paciente {nombre}", ln=True)
+pdf.cell(0, 10, f"Evaluación radiográfica de caderas - {nombre}", ln=True)
 
 # Edad
 pdf.set_font("Arial", '', 11)
@@ -335,10 +335,10 @@ pdf.set_font("Arial", 'B', 11)
 pdf.cell(0, 10, "Valores de Índice Acetabular:", ln=True)
 
 pdf.set_font("Arial", '', 11)
-pdf.cell(95, 10, f"IA Izquierda: {novais_izq:.2f}°", ln=False)
-pdf.cell(95, 10, f"IL Izquierda: {tonnis_izq:.2f}°", ln=True)
-pdf.cell(95, 10, f"IA Derecha: {novais_der:.2f}°", ln=False)
-pdf.cell(95, 10, f"IL Derecha: {tonnis_der:.2f}°", ln=True)
+pdf.cell(95, 10, f"IA-S Derecha: {novais_der:.2f}°", ln=False)
+pdf.cell(95, 10, f"IA-L Derecha: {tonnis_der:.2f}°", ln=True)
+pdf.cell(95, 10, f"IA-S  Izquierda: {novais_izq:.2f}°", ln=False)
+pdf.cell(95, 10, f"IA-L Izquierda: {tonnis_izq:.2f}°", ln=True)
 pdf.ln(5)
 
 # Insertar primera imagen (fig1)
