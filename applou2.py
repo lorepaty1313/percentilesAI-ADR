@@ -256,11 +256,11 @@ if st.button("Calcular y mostrar gráficas"):
 
     fig2, ax2 = plt.subplots(figsize=(22, 10))
     ax2.imshow(img, extent=[0, 10, -2.5, 42], aspect='auto')
-    ax2.plot(x_val, tonnis_izq, 'bo', markersize=12, label="Tönnis Izq")  # azul círculo
-    ax2.text(x_val + 0.2, tonnis_izq + 1.5, "Tönnis Izq", color='blue', fontsize=12)
+    ax2.plot(x_val, tonnis_izq, 'bo', markersize=12, label="Izq")  # azul círculo
+    ax2.text(x_val + 0.2, tonnis_izq + 1.5, "Tönnis Izquierda", color='blue', fontsize=12)
     
-    ax2.plot(x_val, tonnis_der, 'gs', markersize=12, label="Tönnis Der")  # verde cuadrado
-    ax2.text(x_val + 0.2, tonnis_der + 1.5, "Tönnis Der", color='green', fontsize=12)
+    ax2.plot(x_val, tonnis_der, 'gs', markersize=12, label="Der")  # verde cuadrado
+    ax2.text(x_val + 0.2, tonnis_der + 1.5, "Tönnis Derecha", color='green', fontsize=12)
     ax2.set_xticks(xticks)
     ax2.set_xticklabels(etiquetas_xticks, rotation=45, ha='right', fontsize=14)
     ax2.set_xlim(0, 10)
