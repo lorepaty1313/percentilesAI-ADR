@@ -109,8 +109,8 @@ with colT2:
 if st.button("Calcular y mostrar gráficas"):
     # Calcular percentiles
     L, M, S = lms_parameters(sexo, "AI", edad)
-    z_izq = calculate_z_score(angulo_izq, L, M, S)
-    z_der = calculate_z_score(angulo_der, L, M, S)
+    z_izq = calculate_z_score(novais_izq, L, M, S)
+    z_der = calculate_z_score(novais_der, L, M, S)
     p_izq = z_to_percentile(z_izq)
     p_der = z_to_percentile(z_der)
 
