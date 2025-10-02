@@ -147,7 +147,7 @@ if st.button("Calcular y mostrar gráficas"):
     
     ax1.set_title(f'AI - Curvas percentiles valores de Novais et al ({sexo.capitalize()}) - Paciente {nombre}')
     ax1.set_xlabel("Edad (años)")
-    ax1.set_ylabel("AI (mm)")
+    ax1.set_ylabel("AI (°)")
     ax1.grid(True)
     ax1.legend()
     st.pyplot(fig1)
